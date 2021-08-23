@@ -1,0 +1,64 @@
+{
+  "name": "rifanxtra/eflima_backend",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rifan Firdhaus",
+      "email": "rifanfirdhaus@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require-dev": {
+    "yiisoft/yii2-debug": "~2.1.0",
+    "yiisoft/yii2-gii": "~2.1.0",
+    "yiisoft/yii2-faker": "~2.0.0"
+  },
+  "require": {
+    "php": ">=7.3",
+    "yiisoft/yii2": "~2.0.14",
+    "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+    "ramsey/uuid": "^4.0",
+    "bshaffer/oauth2-server-php": "^1.10",
+    "filsh/yii2-oauth2-server": "*",
+    "intervention/image": "^2.5"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "yii\\composer\\Installer::postInstall"
+    ],
+    "post-create-project-cmd": [
+      "yii\\composer\\Installer::postCreateProject",
+      "yii\\composer\\Installer::postInstall"
+    ]
+  },
+  "extra": {
+    "yii\\composer\\Installer::postCreateProject": {
+      "setPermission": [
+        {
+          "runtime": "0777",
+          "assets": "0777",
+          "yii": "0755"
+        }
+      ]
+    },
+    "yii\\composer\\Installer::postInstall": {
+      "generateCookieValidationKey": [
+        "app/config/components.php"
+      ]
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "config": {
+    "process-timeout": 1800,
+    "vendor-dir": "app/vendor",
+    "fxp-asset": {
+      "enabled": false
+    }
+  }
+}
